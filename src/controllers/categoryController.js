@@ -36,7 +36,7 @@ exports.updateCategory = async (req,res) =>{
     const {id} = req.params;
     const {name} =req.body;
 
-    const category = prisma.category.update({
+    const category = await prisma.category.update({
         where:{id: parseInt(id)},
         data:{name},
     })
@@ -45,9 +45,12 @@ exports.updateCategory = async (req,res) =>{
 }
 
 
+
 //delete
 
 exports.deleteCategory = async (req,res) =>{
+    console.log("click");
+    
     const {id} = req.params;
    await prisma.category.delete({
         where:{id: parseInt(id)}
